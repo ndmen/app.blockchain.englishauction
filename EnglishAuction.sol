@@ -14,3 +14,10 @@ interface IERC721 {
         uint
     ) external;
 }
+
+contract EnglishAuction {
+    event Start();
+    event Bid(address indexed sender, uint amount);
+    event Withdraw(address indexed bidder, uint amount);
+    event End(address winner, uint amount);
+}
