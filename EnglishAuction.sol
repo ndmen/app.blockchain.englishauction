@@ -20,4 +20,16 @@ contract EnglishAuction {
     event Bid(address indexed sender, uint amount);
     event Withdraw(address indexed bidder, uint amount);
     event End(address winner, uint amount);
+
+    IERC721 public nft;
+    uint public nftId;
+
+    address payable public seller;
+    uint public endAt;
+    bool public started;
+    bool public ended;
+
+    address public highestBigger;
+    uint public highestBid;
+    mapping(address => uint) public bids;
 }
