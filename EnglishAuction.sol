@@ -44,4 +44,15 @@ contract EnglishAuction {
         seller = payable(msg.sender);
         highestBid = _startingBid;
     }
+
+    function start() external {
+        require(!started, "started");
+        require(msg.sender == seller, "not seller");
+
+        nft.transferFrom(msg.sender, address(this), nftId);
+        started = true;
+        endAt = block.timestamp + 7 days;
+
+        emti Start();
+    }
 }
