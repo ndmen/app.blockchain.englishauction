@@ -32,4 +32,16 @@ contract EnglishAuction {
     address public highestBigger;
     uint public highestBid;
     mapping(address => uint) public bids;
+
+    constructor(
+        address _ntf,
+        uint _nftId,
+        uint _startingBid
+    ) {
+        nft = IERC721(_ntf);
+        nftId = _nftId;
+
+        seller = payable(msg.sender);
+        highestBid = _startingBid;
+    }
 }
