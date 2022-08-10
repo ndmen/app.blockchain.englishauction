@@ -55,4 +55,19 @@ contract EnglishAuction {
 
         emti Start();
     }
+
+    function bid() external payable {
+        require(started, "not started");
+        require(block.timestamp < endAt, "ended");
+        require(msg.value > highestBid, "value < highest");
+
+        if(highestBigger != address(0)) {
+            bids[highestBigger] += highestBid;
+        }
+
+        highestBigger = msg.sender;
+        highestBid = msg.value;
+
+        emit Bid(msg.sender, msg.value);
+    }
 }
