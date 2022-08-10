@@ -70,4 +70,12 @@ contract EnglishAuction {
 
         emit Bid(msg.sender, msg.value);
     }
+
+    function withdraw() external {
+        uint bal = bids[msg.sender];
+        bids[msg.sender] = 0;
+        payable(msg.sender).transfer(bal);
+
+        emit Withdraw(msg.sender, bal);
+    }
 }
